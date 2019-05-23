@@ -5,6 +5,7 @@
 ### Step 1:
 
 The first part is a http server apache with php. You can find the image with Docker hub, we use php:5.6-apache.
+
 To copy the content, you have to put every file in the content/ folder and it will be copy into /var/www/html.
 Bootstrap is very usefull to find a good design and responsiv for your website template.
 
@@ -17,7 +18,7 @@ You have to be in fb-apache-static branch.
 We have a Dockerfie, you have to be in the repository : docker-images/apache-php-image/
 
 To build the image : 
-docker build -t res/apache_php
+docker build -t res/apache_php .
 To run : 
 docker run -d -p 8080:80 res/apache_php
 If you want to run more than one server, you have to change 8080 with 8081 (i.e)
@@ -28,15 +29,18 @@ If you want to run more than one server, you have to change 8080 with 8081 (i.e)
 
 In this part, the purpose is to write a little express server with nodejs and run it in docker.
 We choose to send statistics about animal, the country, and how much people they kill per year.
+
 The content has to be in src folder, this folder is copied when you build the docker image.
 The node version is 4.4, you can change this in the Dockerfile.
 
 #### To try and run : 
 
+You have to be in fb-express-dynamic branch.
+
 We have a Dockerfie, you have to be in the repository : docker-images/express-image/
 
 To build the image : 
-docker build -t res/express_animals
+docker build -t res/express_animals .
 To run : 
 docker run -d -p 9090:3000 res/express_animals
 If you want to run more than one server, you have to change 9090 with 9091 (i.e)
@@ -44,6 +48,28 @@ If you want to run more than one server, you have to change 9090 with 9091 (i.e)
  To verify, you can use telnet or your browser. (192.168.99.100:9090)
 
 Postaman is really usefull to see what happen between the client and the server.
+
+###Step 3:
+
+You have to be in fb-apache-reverse-proxy branch.
+
+We will add a rervers proxy here, it's a good thing for security.
+
+You have to change server configuration files to do this.  These files are in conf/sites-available/ ,
+you have to edit 001-reverse-proxy.conf to change configuration. BE CARFEUL, it's hardcode so you have to verify which IP is used by docker. (You can use : docker inspect <name> | grep -i ipaddress).
+
+To resolve DNS problem, you have to change, on your computer, in /etc/hosts (for mac os) and add 192.168.99.100 demo.res.ch
+
+####To try and run : 
+
+We have a Dockerfie, you have to be in the repository : docker-images/apache-reverse-proxy/
+
+To build the image : 
+docker build -t res/apache_rp .
+To run : 
+docker run -d -p 8080:80 res/apache_rp
+
+ To verify, you can use  your browser. (demo.res.ch:8080 (website) or demo.res.ch:8080/api/animals/ (animals array))
 
 ## Objectives
 
