@@ -16,10 +16,14 @@ You have to be in fb-apache-static branch.
 
 We have a Dockerfie, you have to be in the repository : docker-images/apache-php-image/
 
-To build the image : 
+To build the image :
+
 docker build -t res/apache_php .
-To run : 
+
+To run :
+
 docker run -d -p 8080:80 res/apache_php
+
 If you want to run more than one server, you have to change 8080 with 8081 (i.e)
 
  To verify, you can use  your browser. (192.168.99.100:8080)
