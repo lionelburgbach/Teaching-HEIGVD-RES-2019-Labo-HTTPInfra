@@ -17,7 +17,7 @@ You have to be in fb-apache-static branch.
 We have a Dockerfie, you have to be in the repository : docker-images/apache-php-image/
 
 To build the image : 
-docker build -t res/apache_php
+docker build -t res/apache_php .
 To run : 
 docker run -d -p 8080:80 res/apache_php
 If you want to run more than one server, you have to change 8080 with 8081 (i.e)
@@ -25,6 +25,8 @@ If you want to run more than one server, you have to change 8080 with 8081 (i.e)
  To verify, you can use  your browser. (192.168.99.100:8080)
 
 ### Step 2:
+
+You have to be in fb-express-dynamic branch.
 
 In this part, the purpose is to write a little express server with nodejs and run it in docker.
 We choose to send statistics about animal, the country, and how much people they kill per year.
@@ -36,7 +38,7 @@ The node version is 4.4, you can change this in the Dockerfile.
 We have a Dockerfie, you have to be in the repository : docker-images/express-image/
 
 To build the image : 
-docker build -t res/express_animals
+docker build -t res/express_animals .
 To run : 
 docker run -d -p 9090:3000 res/express_animals
 If you want to run more than one server, you have to change 9090 with 9091 (i.e)
