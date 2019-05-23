@@ -58,8 +58,7 @@ If you want to run more than one server, you have to change 9090 with 9091 (i.e)
 Postaman is really usefull to see what happen between the client and the server.
 
 
-
-###Step 3:
+### Step 3:
 
 You have to be in fb-apache-reverse-proxy branch.
 
@@ -70,7 +69,7 @@ you have to edit 001-reverse-proxy.conf to change configuration. BE CARFEUL, it'
 
 To resolve DNS problem, you have to change, on your computer, in /etc/hosts (for mac os) and add 192.168.99.100 demo.res.ch
 
-###To try and run : 
+### To try and run : 
 
 We have a Dockerfie, you have to be in the repository : docker-images/apache-reverse-proxy/
 
