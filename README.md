@@ -100,8 +100,8 @@ docker run -d -p 8080:80 res/apache_rp
 
  juste run the script sr_setp4.sh and go to your browser and enjoy the result.
 
- If the script dosen't work, verify IP adresse and run again.
-
+ If the script dosen't work, verify IP adresse, change them if you need and run again.
+ 
 ## Objectives
 
 The first objective of this lab is to get familiar with software tools that will allow us to build a **complete web infrastructure**. By that, we mean that we will build an environment that will allow us to serve **static and dynamic content** to web browsers. To do that, we will see that the **apache httpd server** can act both as a **HTTP server** and as a **reverse proxy**. We will also see that **express.js** is a JavaScript framework that makes it very easy to write dynamic web apps.
