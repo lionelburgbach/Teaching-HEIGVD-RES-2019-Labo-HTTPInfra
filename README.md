@@ -37,7 +37,7 @@ We choose to send statistics about animal, the country, and how much people they
 The content has to be in src folder, this folder is copied when you build the docker image.
 The node version is 4.4, you can change this in the Dockerfile.
 
-#### To try and run : 
+### To try and run : 
 
 You have to be in fb-express-dynamic branch.
 
