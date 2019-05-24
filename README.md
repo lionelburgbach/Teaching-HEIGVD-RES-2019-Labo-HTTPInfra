@@ -1,7 +1,6 @@
 # Teaching-HEIGVD-RES-2018-Labo-HTTPInfra
 
 
-
 ### Step 1:
 
 The first part is a http server apache with php. You can find the image with Docker hub, we use php:5.6-apache.
@@ -82,6 +81,26 @@ To run :
 docker run -d -p 8080:80 res/apache_rp
 
  To verify, you can use  your browser. (demo.res.ch:8080 (website) or demo.res.ch:8080/api/animals/ (animals array))
+
+ ### Step 4:
+
+ I've changed node:4.4 to node:8 to slave a problem with docker and vim.
+
+ Here, we are focus on dymnamic content on the web page. To do that, we use JQuery. 
+ You have to update the index.html file to add the script at the end and write a function in javascript.
+ Our scrpit is called animals.js
+
+ ### To try and run 
+
+ When you build images, you have to use these names :
+
+ - docker build -t res/apache_php
+ - docker build -t res/express_animals
+ - docker build -t res/apache_rp
+
+ juste run the script sr_setp4.sh and go to your browser and enjoy the result.
+
+ If the script dosen't work, verify IP adresse and run again.
 
 ## Objectives
 
