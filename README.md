@@ -100,7 +100,47 @@ docker run -d -p 8080:80 res/apache_rp
 
  juste run the script sr_setp4.sh and go to your browser and enjoy the result.
 
- If the script dosen't work, verify IP adresse and run again.
+ If the script dosen't work, verify IP adresse, change them if you need and run again.
+
+ ### Step 5:
+
+ In the last part, hardcode is change by dynamic code that is really better.
+
+ //TO DO
+
+ ### To try and run 
+
+First you have to build images :
+
+- docker build -t res/apache_php
+- docker build -t res/express_animals
+- docker build -t res/apache_rp
+
+Now you have to run images :
+
+- docker run -d --name apache_static res/apache_php
+- docker run -d --name express_dynamic res/express_animals
+
+Now you have to check ip form container : 
+
+docker inspect apache_static | grep -i ipadress
+(i.e 172.17.0.1)
+docker inspect express_dynamic | grep -i ipadress
+(i.e 172.17.0.2)
+
+Now you can run the revers proxy : 
+
+docker run -d -e STATIC_APP=172.17.0.1:80 -e DYNAMIC_APP=172.17.0.2:3000 --name apache_rp -p 8080:80 res/apache_rp
+
+### Management UI
+
+To use Management UI, you have to run these commands : 
+
+docker volume create portainer_data
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
+
+Go to your browser, it's beautiful!
+
 
 ## Objectives
 
