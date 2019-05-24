@@ -130,7 +130,7 @@ Now you have to check ip form container :
 
 Now you can run the revers proxy : 
 
-docker run -d -e STATIC_APP=172.17.0.1:80 -e DYNAMIC_APP=172.17.0.2:3000 --name apache_rp -p 8080:80 res/apache_rp
+- docker run -d -e STATIC_APP=172.17.0.1:80 -e DYNAMIC_APP=172.17.0.2:3000 --name apache_rp -p 8080:80 res/apache_rp
 
 ### Management UI
 
