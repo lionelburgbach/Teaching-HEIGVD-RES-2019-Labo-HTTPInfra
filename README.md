@@ -128,9 +128,9 @@ Now you have to run images :
 
 Now you have to check ip form container : 
 
-- docker inspect apache_static | grep -i ipadress
+- docker inspect apache_static | grep -i ipaddress
 (i.e 172.17.0.1)
-- docker inspect express_dynamic | grep -i ipadress
+- docker inspect express_dynamic | grep -i ipaddress
 (i.e 172.17.0.2)
 
 Now you can run the revers proxy : 
