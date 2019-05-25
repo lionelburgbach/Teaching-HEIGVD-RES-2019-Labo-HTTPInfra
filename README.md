@@ -111,7 +111,7 @@ docker run -d -p 8080:80 res/apache_rp
 
  For the apache2-foreground, we have to use this version, the one in the webcat does not work : https://github.com/docker-library/php/blob/master/7.3/stretch/apache/apache2-foreground 
 
-It's still not good enough, if the revers proxy crash or one other server, everithing is down, so we will try to change that.
+It's still not good enough, if the revers proxy crash or one other server, everything is down, so we will try to change that.
 
  ### To try and run 
 
