@@ -84,7 +84,7 @@ docker run -d -p 8080:80 res/apache_rp
 
  ### Step 4:
 
- I've changed node:4.4 to node:8 to slave a problem with docker and vim.
+ I've changed node:4.4 to node:8 to solve a problem with docker and vim.
 
  Here, we are focus on dymnamic content on the web page. To do that, we use JQuery. 
  You have to update the index.html file to add the script at the end and write a function in javascript.
@@ -126,16 +126,16 @@ Now you have to run images :
 - docker run -d --name apache_static res/apache_php
 - docker run -d --name express_dynamic res/express_animals
 
-Now you have to check ip form container : 
+Now you have to check ip form container and save it in a variable
 
-- docker inspect apache_static | grep -i ipaddress
-(i.e 172.17.0.1)
-- docker inspect express_dynamic | grep -i ipaddress
-(i.e 172.17.0.2)
+- static_app=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache_static\`
+- dynamic_app=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' express_dynamic\`
 
 Now you can run the revers proxy : 
 
-- docker run -d -e STATIC_APP=172.17.0.1:80 -e DYNAMIC_APP=172.17.0.2:3000 --name apache_rp -p 8080:80 res/apache_rp
+- docker run -d -p 8080:80 -e STATIC_APP=$static_app:80 -e DYNAMIC_APP=$dynamic_app:3000 --name apache_rp res/apache_rp
+
+There is a script for that, run_step5.sh
 
 ### Management UI
 
