@@ -137,6 +137,41 @@ Now you can run the revers proxy :
 
 There is a script for that, run_step5.sh
 
+### Step 6: Load Balancing
+
+//TO DO
+
+
+Source : https://httpd.apache.org/docs/2.4/fr/mod/mod_proxy_balancer.html
+
+### To try and run
+
+First you have to build images :
+
+- docker build -t res/apache_php
+- docker build -t res/express_animals
+- docker build -t res/apache_rp
+
+Now you have to run images :
+
+- docker run -d --name apache_static1 res/apache_php
+- docker run -d --name apache_static2 res/apache_php
+- docker run -d --name express_dynamic1 res/express_animals
+- docker run -d --name express_dynamic2 res/express_animals
+
+Now you have to check ip form container and save it in a variable
+
+- static_app1=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache_static1\`
+- static_app2=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache_static2\`
+- dynamic_app1=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' express_dynamic1\`
+- dynamic_app2=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' express_dynamic2\`
+
+Now you can run the revers proxy : 
+
+- docker run -d -p 8080:80 -e STATIC_APP1=$static_app1:80 -e STATIC_APP2=$static_app2:80 -e DYNAMIC_APP1=$dynamic_app1:3000 -e DYNAMIC_APP2=$dynamic_app2:3000 --name apache_rp res/apache_rp
+
+There is a script for that, run_step6.sh
+
 ### Management UI
 
 To use Management UI, you have to run these commands : 
@@ -145,7 +180,6 @@ To use Management UI, you have to run these commands :
 - docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
 
 Go to your browser, it's beautiful!
-
 
 ## Objectives
 
