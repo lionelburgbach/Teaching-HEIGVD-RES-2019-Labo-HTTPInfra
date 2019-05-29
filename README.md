@@ -139,8 +139,24 @@ There is a script for that, run_step5.sh
 
 ### Step 6: Load Balancing
 
-//TO DO
+If one server is down, it should be possible to have another one to take the relay.
 
+First you have to choose an load balancer scheduler algorithm, we have chosen lbmethod_byrequests (Request Counting).
+
+In the script php, we have to change the older configuration and add a new one : 
+
+exemple from the source : 
+
+    <Proxy "balancer://mycluster">
+        BalancerMember "http://192.168.1.50:80"
+        BalancerMember "http://192.168.1.51:80"
+    </Proxy>
+    ProxyPass        "/test" "balancer://mycluster"
+    ProxyPassReverse "/test" "balancer://mycluster"
+
+The Dockerfile has to be update : 
+
+We have to add these mods : proxy_balancer lbmethod_byrequests
 
 Source : https://httpd.apache.org/docs/2.4/fr/mod/mod_proxy_balancer.html
 
@@ -171,6 +187,8 @@ Now you can run the revers proxy :
 - docker run -d -p 8080:80 -e STATIC_APP1=$static_app1:80 -e STATIC_APP2=$static_app2:80 -e DYNAMIC_APP1=$dynamic_app1:3000 -e DYNAMIC_APP2=$dynamic_app2:3000 --name apache_rp res/apache_rp
 
 There is a script for that, run_step6.sh
+
+Kill one, see if it'is still working, and kill the second.
 
 ### Management UI
 

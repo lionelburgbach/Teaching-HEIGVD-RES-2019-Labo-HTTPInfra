@@ -1,6 +1,6 @@
-#docker build -t res/apache_php ./docker-images/apache-php-image/
-#docker build -t res/express_animals ./docker-images/express-image/
-#docker build -t res/apache_rp ./docker-images/apache-reverse-proxy/
+docker build -t res/apache_php ./docker-images/apache-php-image/
+docker build -t res/express_animals ./docker-images/express-image/
+docker build -t res/apache_rp ./docker-images/apache-reverse-proxy/
 
 docker run -d --name apache_static1 res/apache_php
 docker run -d --name apache_static2 res/apache_php
