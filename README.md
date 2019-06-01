@@ -26,7 +26,7 @@ docker run -d -p 8080:80 res/apache_php
 
 If you want to run more than one server, you have to change 8080 with 8081 (i.e)
 
- To verify, you can use  your browser. (192.168.99.100:8080)
+To verify, you can use  your browser. (192.168.99.100:8080)
 
 ### Step 2:
 
@@ -52,7 +52,7 @@ docker run -d -p 9090:3000 res/express_animals
 
 If you want to run more than one server, you have to change 9090 with 9091 (i.e)
 
- To verify, you can use telnet or your browser. (192.168.99.100:9090)
+To verify, you can use telnet or your browser. (192.168.99.100:9090)
 
 Postaman is really usefull to see what happen between the client and the server.
 
@@ -80,36 +80,38 @@ To run :
 
 docker run -d -p 8080:80 res/apache_rp
 
- To verify, you can use  your browser. (demo.res.ch:8080 (website) or demo.res.ch:8080/api/animals/ (animals array))
+To verify, you can use  your browser. (demo.res.ch:8080 (website) or demo.res.ch:8080/api/animals/ (animals array))
 
- ### Step 4:
+### Step 4:
 
- I've changed node:4.4 to node:8 to solve a problem with docker and vim.
+To update node:4.4 We used this : https://superuser.com/questions/1423486/issue-with-fetching-http-deb-debian-org-debian-dists-jessie-updates-inrelease
 
- Here, we are focus on dymnamic content on the web page. To do that, we use JQuery. 
- You have to update the index.html file to add the script at the end and write a function in javascript.
- Our scrpit is called animals.js
+Here, we are focus on dymnamic content on the web page. To do that, we use JQuery. You have to update the index.html file to add the script at the end and write a function in javascript. Our scrpit is called animals.js To try and run
 
- ### To try and run 
+When you build images, you have to use these names :
 
- When you build images, you have to use these names :
+- docker build -t res/apache_php ./docker-images/apache-php-image/
+- docker build -t res/express_animals ./docker-images/express-image/
+- docker build -t res/apache_rp ./docker-images/apache-reverse-proxy/
 
- - docker build -t res/apache_php
- - docker build -t res/express_animals
- - docker build -t res/apache_rp
+And run images :
 
- juste run the script sr_setp4.sh and go to your browser and enjoy the result.
+- docker run -d --name apache_static res/apache_php
+- docker run -d --name express_dynamaic res/express_animals
+- docker run -d -p 8080:80 --name apache_rp res/apache_rp
 
- If the script dosen't work, verify IP adresse, change them if you need and run again.
+You can juste run the script sr_setp4.sh and go to your browser and enjoy the result.
 
- ### Step 5:
+If the script dosen't work, verify IP adresse, change them if you need and run again.
 
- In the last part, hardcode is change by dynamic code that is really better.
+### Step 5:
 
- A php script is used here, to catch the ip adresse when you run the revers proxy and write them into the file 001-reverse-proxy.conf
- This script is in the repository templates and it's config-template.php.
+In the last part, hardcode is change by dynamic code that is really better.
 
- For the apache2-foreground, we have to use this version, the one in the webcat does not work : https://github.com/docker-library/php/blob/f016f5dc420e7d360f7381eb014ac6697e247e11/5.6/apache/apache2-foreground
+A php script is used here, to catch the ip adresse when you run the revers proxy and write them into the file 001-reverse-proxy.conf
+This script is in the repository templates and it's config-template.php.
+
+For the apache2-foreground, we have to use this version, the one in the webcat does not work : https://github.com/docker-library/php/blob/f016f5dc420e7d360f7381eb014ac6697e247e11/5.6/apache/apache2-foreground
 
 It's still not good enough, if the revers proxy crash or one other server, everything is down, so we will try to change that.
 
