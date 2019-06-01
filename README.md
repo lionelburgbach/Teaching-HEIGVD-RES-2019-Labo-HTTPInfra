@@ -84,7 +84,7 @@ docker run -d -p 8080:80 res/apache_rp
 
  ### Step 4:
 
- I've changed node:4.4 to node:8 to slave a problem with docker and vim.
+ Tu update node:4.4 We used this : https://superuser.com/questions/1423486/issue-with-fetching-http-deb-debian-org-debian-dists-jessie-updates-inrelease
 
  Here, we are focus on dymnamic content on the web page. To do that, we use JQuery. 
  You have to update the index.html file to add the script at the end and write a function in javascript.
@@ -94,11 +94,17 @@ docker run -d -p 8080:80 res/apache_rp
 
  When you build images, you have to use these names :
 
- - docker build -t res/apache_php
- - docker build -t res/express_animals
- - docker build -t res/apache_rp
+- docker build -t res/apache_php ./docker-images/apache-php-image/
+- docker build -t res/express_animals ./docker-images/express-image/
+- docker build -t res/apache_rp ./docker-images/apache-reverse-proxy/
 
- juste run the script sr_setp4.sh and go to your browser and enjoy the result.
+ And run images : 
+
+- docker run -d --name apache_static res/apache_php
+- docker run -d --name express_dynamaic res/express_animals
+- docker run -d -p 8080:80 --name apache_rp res/apache_rp
+
+ YOu can juste run the script sr_setp4.sh and go to your browser and enjoy the result.
 
  If the script dosen't work, verify IP adresse, change them if you need and run again.
  
