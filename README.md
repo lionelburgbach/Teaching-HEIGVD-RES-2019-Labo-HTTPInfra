@@ -109,7 +109,7 @@ docker run -d -p 8080:80 res/apache_rp
  A php script is used here, to catch the ip adresse when you run the revers proxy and write them into the file 001-reverse-proxy.conf
  This script is in the repository templates and it's config-template.php.
 
- For the apache2-foreground, we have to use this version, the one in the webcat does not work : https://github.com/docker-library/php/blob/master/7.3/stretch/apache/apache2-foreground 
+ For the apache2-foreground, we have to use this version, the one in the webcat does not work : https://github.com/docker-library/php/blob/f016f5dc420e7d360f7381eb014ac6697e247e11/5.6/apache/apache2-foreground
 
 It's still not good enough, if the revers proxy crash or one other server, everything is down, so we will try to change that.
 
