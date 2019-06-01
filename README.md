@@ -80,33 +80,33 @@ To run :
 
 docker run -d -p 8080:80 res/apache_rp
 
- To verify, you can use  your browser. (demo.res.ch:8080 (website) or demo.res.ch:8080/api/animals/ (animals array))
+To verify, you can use  your browser. (demo.res.ch:8080 (website) or demo.res.ch:8080/api/animals/ (animals array))
 
- ### Step 4:
+### Step 4:
 
- Tu update node:4.4 We used this : https://superuser.com/questions/1423486/issue-with-fetching-http-deb-debian-org-debian-dists-jessie-updates-inrelease
+To update node:4.4 We used this : https://superuser.com/questions/1423486/issue-with-fetching-http-deb-debian-org-debian-dists-jessie-updates-inrelease
 
- Here, we are focus on dymnamic content on the web page. To do that, we use JQuery. 
- You have to update the index.html file to add the script at the end and write a function in javascript.
- Our scrpit is called animals.js
+Here, we are focus on dymnamic content on the web page. To do that, we use JQuery. 
+You have to update the index.html file to add the script at the end and write a function in javascript.
+Our scrpit is called animals.js
 
- ### To try and run 
+### To try and run 
 
- When you build images, you have to use these names :
+When you build images, you have to use these names :
 
 - docker build -t res/apache_php ./docker-images/apache-php-image/
 - docker build -t res/express_animals ./docker-images/express-image/
 - docker build -t res/apache_rp ./docker-images/apache-reverse-proxy/
 
- And run images : 
+And run images : 
 
 - docker run -d --name apache_static res/apache_php
 - docker run -d --name express_dynamaic res/express_animals
 - docker run -d -p 8080:80 --name apache_rp res/apache_rp
 
- You can juste run the script sr_setp4.sh and go to your browser and enjoy the result.
+You can juste run the script sr_setp4.sh and go to your browser and enjoy the result.
 
- If the script dosen't work, verify IP adresse, change them if you need and run again.
+If the script dosen't work, verify IP adresse, change them if you need and run again.
  
 ## Objectives
 
