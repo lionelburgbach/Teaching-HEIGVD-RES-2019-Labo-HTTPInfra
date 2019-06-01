@@ -104,7 +104,7 @@ docker run -d -p 8080:80 res/apache_rp
 - docker run -d --name express_dynamaic res/express_animals
 - docker run -d -p 8080:80 --name apache_rp res/apache_rp
 
- YOu can juste run the script sr_setp4.sh and go to your browser and enjoy the result.
+ You can juste run the script sr_setp4.sh and go to your browser and enjoy the result.
 
  If the script dosen't work, verify IP adresse, change them if you need and run again.
  
