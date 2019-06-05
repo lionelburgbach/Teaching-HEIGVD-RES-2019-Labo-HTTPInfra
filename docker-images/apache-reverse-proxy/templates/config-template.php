@@ -11,9 +11,10 @@
     	BalancerMember 'http://<?php print "$dynamic_app1"?>'
     	BalancerMember 'http://<?php print "$dynamic_app2"?>'
 	</Proxy>
+	
 	<Proxy "balancer://static_app">
-    	BalancerMember 'http://<?php print "$static_app1"?>/'
-    	BalancerMember 'http://<?php print "$static_app2"?>/'
+    	BalancerMember 'http://<?php print "$static_app1"?>'
+    	BalancerMember 'http://<?php print "$static_app2"?>'
 	</Proxy>
 
 	ProxyPass '/api/animals/' 'balancer://dynamic_app/'
