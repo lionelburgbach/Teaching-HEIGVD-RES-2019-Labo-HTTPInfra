@@ -75,7 +75,7 @@ function generateAnimalStats() {
 ```
 ### To try and run :
 
-To try and run : 
+### To try and run :
 
 We have a Dockerfie, you have to be in the main repository.
 
@@ -89,6 +89,6 @@ To run :
 
 If you want to run more than one server, you have to change 9090 with 9091 (i.e.)
 
-To verify, you can use telnet or your browser. (192.168.99.100:9090)
+To verify, you can use telnet or your browser. (**yourDockerHostIPaddress**:9090)
 
 Postman is really useful to see what happens between the client and the server.
