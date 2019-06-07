@@ -115,7 +115,6 @@ To run :
 
 - docker run -d --name apache_static res/apache_php
 - docker run -d --name express_dynamic res/express_animals
-
 - docker inspect apache_static | grep -i ipaddress
 - docker inspect express_dynamic | grep -i ipaddress
 
