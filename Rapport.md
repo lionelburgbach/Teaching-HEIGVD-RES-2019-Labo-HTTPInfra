@@ -87,7 +87,7 @@ To run :
 
 If you want to run more than one server, you have to change 9090 with 9091 (i.e.)
 
-To verify, you can use telnet or your browser. (<yourDockerHostIPaddress>:9090)
+To verify, you can use telnet or your browser. (**yourDockerHostIPaddress**:9090)
 
 Postman is really useful to see what happens between the client and the server.
 
@@ -97,9 +97,9 @@ This step is on the branch **fb-apache-reverse-proxy**
 
 We will add a reverse proxy here, it's a good thing for security.
 
-You have to change server configuration files to do this.  These files are in conf/sites-available/ , you have to edit 001-reverse-proxy.conf to change configuration. **BE CAREFUL**, it's hardcoded so you have to verify which IP is used by docker. (You can use : docker inspect <name> | grep -i ipaddress).
+You have to change server configuration files to do this.  These files are in conf/sites-available/ , you have to edit 001-reverse-proxy.conf to change configuration. **BE CAREFUL**, it's hardcoded so you have to verify which IP is used by docker. (You can use : docker inspect **name** | grep -i ipaddress).
 
-To resolve DNS problem, you have to change, on your computer, in /etc/hosts (for macOS) and add <yourDockerHostIPaddress> demo.res.ch
+To resolve DNS problem, you have to change, on your computer, in /etc/hosts (for macOS) and add **yourDockerHostIPaddress** demo.res.ch
 
 ### To try and run : 
 
