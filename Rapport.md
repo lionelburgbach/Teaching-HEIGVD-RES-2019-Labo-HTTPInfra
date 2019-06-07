@@ -75,8 +75,6 @@ function generateAnimalStats() {
 ```
 ### To try and run :
 
-### To try and run :
-
 We have a Dockerfie, you have to be in the main repository.
 
 To build the image : 
