@@ -1,33 +1,5 @@
 # Teaching-HEIGVD-RES-2018-Labo-HTTPInfra
 
-
-
-### Step 1:
-
-The first part is a http server apache with php. You can find the image with Docker hub, we use php:5.6-apache.
-To copy the content, you have to put every file in the content/ folder and it will be copy into /var/www/html.
-Bootstrap is very usefull to find a good design and responsiv for your website template.
-
-Configuration files are in /etc/apache2/
-
-### To try and run :
-
-You have to be in fb-apache-static branch.
-
-We have a Dockerfie, you have to be in the repository : docker-images/apache-php-image/
-
-To build the image :
-
-docker build -t res/apache_php .
-
-To run :
-
-docker run -d -p 8080:80 res/apache_php
-
-If you want to run more than one server, you have to change 8080 with 8081 (i.e)
-
- To verify, you can use  your browser. (192.168.99.100:8080)
-
 ## Objectives
 
 The first objective of this lab is to get familiar with software tools that will allow us to build a **complete web infrastructure**. By that, we mean that we will build an environment that will allow us to serve **static and dynamic content** to web browsers. To do that, we will see that the **apache httpd server** can act both as a **HTTP server** and as a **reverse proxy**. We will also see that **express.js** is a JavaScript framework that makes it very easy to write dynamic web apps.
