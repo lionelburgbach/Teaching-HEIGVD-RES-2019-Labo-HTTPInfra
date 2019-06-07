@@ -264,7 +264,7 @@ There is a script for that, run_step6.sh
 
 Kill one, see if it's still working, and kill the second. (Especially for the node server)
 
-Another way to test is to use the following command and change one thing in the web interface from the second server like **Welcom to RES** to **Welcom to RES 2** and stop the first one.
+Another way to test is to use the following command and change one thing in the web interface from the second server like **Welcome to RES** to **Welcome to RES 2** and stop the first one.
 
 Change on apache_static2 this time :
 
