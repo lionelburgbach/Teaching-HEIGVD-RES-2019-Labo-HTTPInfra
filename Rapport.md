@@ -91,6 +91,39 @@ To verify, you can use telnet or your browser. (**yourDockerHostIPaddress**:9090
 
 Postman is really useful to see what happens between the client and the server.
 
+### Step 3: Reverse proxy with apache (static configuration)
+
+This step is on the branch **fb-apache-reverse-proxy**
+
+We will add a reverse proxy here, it's a good thing for security.
+
+You have to change server configuration files to do this.  These files are in conf/sites-available/ , you have to edit 001-reverse-proxy.conf to change configuration. **BE CAREFUL**, it's hardcoded so you have to verify which IP is used by docker. (You can use : docker inspect **name** | grep -i ipaddress).
+
+To resolve DNS problem, you have to change, on your computer, in /etc/hosts (for macOS) and add **yourDockerHostIPaddress** demo.res.ch
+
+### To try and run : 
+
+We have a Dockerfie, you have to be in the main repository.
+
+To build the image : 
+
+- docker build -t res/apache_php ./docker-images/apache-php-image/
+- docker build -t res/express_animals ./docker-images/express-image/
+- docker build -t res/apache_rp ./docker-images/apache-reverse-proxy/
+
+To run : 
+
+- docker run -d --name apache_static res/apache_php
+- docker run -d --name express_dynamic res/express_animals
+- docker inspect apache_static | grep -i ipaddress
+- docker inspect express_dynamic | grep -i ipaddress
+
+And change IP in the configuration file.
+
+- docker run -d -p 8080:80 res/apache_rp
+
+To verify, you can use your browser. (demo.res.ch:8080 (website) or demo.res.ch:8080/api/animals/ (animals array))
+
 ### Step 4: AJAX requests with JQuery
 
 This step is on the branch **fb-ajax-jquery**
