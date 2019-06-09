@@ -214,11 +214,13 @@ Our configuration is :
 <Proxy "balancer://dynamic_app">
     BalancerMember 'http://<?php print "$dynamic_app1"?>'
     BalancerMember 'http://<?php print "$dynamic_app2"?>'
+	ProxySet lbmethod=byrequests
 </Proxy>
 	
 <Proxy "balancer://static_app">
     BalancerMember 'http://<?php print "$static_app1"?>'
     BalancerMember 'http://<?php print "$static_app2"?>'
+	ProxySet lbmethod=byrequests
 </Proxy>
 
 ProxyPass '/api/animals/' 'balancer://dynamic_app/'
