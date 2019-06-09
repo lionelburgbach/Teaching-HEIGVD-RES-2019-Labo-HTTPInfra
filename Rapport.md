@@ -274,6 +274,6 @@ Change on apache_static2 this time :
 
 and change index.html file with vim or nano.
 
-To stop a docker unse the command : 
+To stop a docker use the command : 
 
 - docker stop (or kill) **name**
