@@ -310,3 +310,68 @@ and change index.html file with vim or nano.
 To stop a docker use the command : 
 
 - docker stop (or kill) **name**
+
+### Extra step 3: Load Balancing - stickysession
+
+This step is on the branch **fb-lb-stickysession**
+
+If one server is down, it should be possible to have another one to take the relay. It's almost the same as the extra step 2.
+
+In the script php, we have to change the older configuration and add a new one : 
+
+```
+Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
+<Proxy "balancer://dynamic_app">
+    BalancerMember 'http://<?php print "$dynamic_app1"?>' route=1
+    BalancerMember 'http://<?php print "$dynamic_app2"?>' route=2
+	ProxySet stickysession=ROUTEID
+</Proxy>
+	
+<Proxy "balancer://static_app">
+    BalancerMember 'http://<?php print "$static_app1"?>'
+    BalancerMember 'http://<?php print "$static_app2"?>'
+	ProxySet lbmethod=byrequests
+</Proxy>
+
+ProxyPass '/api/animals/' 'balancer://dynamic_app/'
+ProxyPassReverse '/api/animals/' 'balancer://dynamic_app/'
+
+ProxyPass '/' 'balancer://static_app/'
+ProxyPassReverse '/' 'balancer://static_app/'
+```
+
+The Dockerfile has to be updated : 
+
+We have to add these mods : headers
+
+Source : https://httpd.apache.org/docs/2.4/fr/mod/mod_proxy_balancer.html
+
+### To try and run
+
+First you have to build images and have to be in the main repository :
+
+- docker build -t res/apache_php ./docker-images/apache-php-image/
+- docker build -t res/express_animals ./docker-images/express-image/
+- docker build -t res/apache_rp ./docker-images/apache-reverse-proxy/
+
+Now you have to run images :
+
+- docker run -d --name apache_static1 res/apache_php
+- docker run -d --name apache_static2 res/apache_php
+- docker run -d --name express_dynamic1 res/express_animals
+- docker run -d --name express_dynamic2 res/express_animals
+
+Now you have to check ip form container and save it in a variable
+
+- static_app1=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache_static1\`
+- static_app2=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache_static2\`
+- dynamic_app1=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' express_dynamic1\`
+- dynamic_app2=\`docker inspect --format '{{ .NetworkSettings.IPAddress }}' express_dynamic2\`
+
+Now you can run the revers proxy : 
+
+- docker run -d -p 8080:80 -e STATIC_APP1=$static_app1:80 -e STATIC_APP2=$static_app2:80 -e DYNAMIC_APP1=$dynamic_app1:3000 -e DYNAMIC_APP2=$dynamic_app2:3000 --name apache_rp res/apache_rp
+
+There is a script for that, run_step6.sh
+
+Kill one, see if it's still working, and kill the second. (Node server)
